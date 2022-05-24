@@ -1,4 +1,4 @@
-# catinder
+# Tarea 5 Vue - Grupo 8 - Catinder
 
 ## Project setup
 ```
