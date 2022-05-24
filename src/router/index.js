@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import ProfileView from '@/views/ProfileView.vue';
 import MatchesView from '@/views/MatchesView.vue';
+import MatchView from '@/views/MatchView.vue';
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     name: 'matches',
     component: MatchesView,
   },
+  {
+    path: '/match/:idx',
+    name: 'match',
+    component: MatchView,
+  }
 ];
 
 const router = createRouter({

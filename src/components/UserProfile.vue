@@ -1,22 +1,18 @@
 <template>
-  <div class="cat-viewer" v-bind:style="{ backgroundImage: `url(${image})` }">
+  <div class="cat-viewer" v-bind:style="{ backgroundImage: `url(${user.image})` }">
     <div class="body">
-      <h1>{{ name }} {{ age }}</h1>
-      <p>{{ description }}</p>
+      <h1>{{ user.name }} {{ user.age }}</h1>
+      <p>{{ user.description }}</p>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: 'UserProfile',
+  props: ['user'],
   components: {},
   data() {
     return {
-      name: 'Copito',
-      age: '18',
-      description:
-        'Busca gatita para que me acompañe a comer Whiskas a la luz de la luna. Me gusta jugar con ratones de plástico y plumas.',
-      image: 'https://i1.sndcdn.com/artworks-000013749515-eiq27h-t500x500.jpg',
     };
   },
   methods: {},

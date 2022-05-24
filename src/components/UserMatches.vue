@@ -4,7 +4,7 @@
       class="match-container"
       v-for="(match, index) in matches"
       :key="index"
-      @click="handleMatchClick(match)"
+      @click="handleMatchClick(match, index)"
     >
       <img class="match-picture" :src="match.image" alt="Cat image" />
       <span class="match-age">{{match.age}}</span>
@@ -17,9 +17,10 @@ export default {
   name: 'UserMatches',
   components: {},
   methods: {
-    handleMatchClick(e) {
+    handleMatchClick(match, index) {
       console.log('Match clicked! Here is the data:');
-      console.log(e.name, e.age, e.description, e.image);
+      console.log(match.name, match.age, match.description, match.image, index);
+      this.$router.push({ name: 'match', params: { idx: index } });
     },
   },
   computed: {
