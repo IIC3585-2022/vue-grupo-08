@@ -7,8 +7,8 @@
       @click="handleMatchClick(match, index)"
     >
       <img class="match-picture" :src="match.image" alt="Cat image" />
-      <span class="match-age">{{match.age}}</span>
-      <span class="match-name">{{match.name}}</span>
+      <span class="match-age">{{ match.age }}</span>
+      <span class="match-name">{{ match.name }}</span>
     </div>
   </div>
 </template>
@@ -18,15 +18,13 @@ export default {
   components: {},
   methods: {
     handleMatchClick(match, index) {
-      console.log('Match clicked! Here is the data:');
-      console.log(match.name, match.age, match.description, match.image, index);
       this.$router.push({ name: 'match', params: { idx: index } });
     },
   },
   computed: {
     matches() {
-      return this.$store.state.matches
-    }
+      return this.$store.state.matches;
+    },
   },
   data() {
     return {};
@@ -63,7 +61,8 @@ export default {
   width: 60px;
   height: 60px;
 }
-.match-container .match-name, .match-container .match-age{
+.match-container .match-name,
+.match-container .match-age {
   font-size: 18px;
   font-weight: bold;
 }

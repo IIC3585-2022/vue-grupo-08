@@ -1,6 +1,6 @@
 <template>
-  <div class="match-view">
-    <UserProfile :user=user />
+  <div class="match-view" @click="handleClick">
+    <UserProfile :user="user" />
   </div>
 </template>
 
@@ -13,7 +13,12 @@ export default {
   computed: {
     user() {
       return this.$store.state.matches[this.$route.params.idx];
-    }
+    },
+  },
+  methods: {
+    handleClick() {
+      this.$router.replace('/matches');
+    },
   },
 };
 </script>
