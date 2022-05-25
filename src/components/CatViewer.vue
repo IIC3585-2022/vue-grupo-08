@@ -3,6 +3,7 @@
     class="cat-viewer"
     v-bind:style="{ backgroundImage: `url(${currCatURL})` }"
   >
+    <div class="match-overlay" v-show="showOverlay">It's a Match!</div>
     <div class="body">
       <h1>{{ currCatName }} {{ currCatAge }}</h1>
       <p>{{ currCatDescription }}</p>
@@ -27,6 +28,7 @@ export default {
   components: {},
   data() {
     return {
+      showOverlay: false,
       currCatName: '',
       currCatAge: '',
       currCatDescription: '',
@@ -61,12 +63,17 @@ export default {
       this.$store.commit('like', likedCat);
 
       if (Math.random() > 0.5) {
+        this.showOverlay = true;
+        this.hideOverlay();
         this.$store.commit('match', likedCat);
       }
       this.replaceCurrCat();
     },
     handleDislike() {
       this.replaceCurrCat();
+    },
+    hideOverlay() {
+      setTimeout(() => (this.showOverlay = false), 600);
     },
   },
 };
@@ -117,5 +124,17 @@ button.dislike {
 }
 button:hover {
   transform: scale(1.1);
+}
+.match-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  font-weight: bolder;
+  color: #2ecc71;
+  text-shadow: 2px 2px 8px black;
 }
 </style>
