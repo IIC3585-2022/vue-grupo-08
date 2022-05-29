@@ -1,0 +1,63 @@
+<template>
+  <div class="message-container" id="message-container">
+    <div class="message" v-for="(msg, idx) in this.$store.state.matches[userIdx].chat" :key="idx">{{msg}}</div>
+    <input type="text" placeholder="Mensaje" @keydown.enter="handleSend">
+  </div>
+</template>
+<script>
+export default {
+  name: 'UserProfile',
+  props: ['userIdx'],
+  components: {},
+  data() {
+    return {
+    };
+  },
+  methods: {
+    handleSend(event) {
+      this.$store.commit('message', { idx: this.userIdx, msg: event.target.value});
+      event.target.value = "";
+      /* TODO: Fix scroll: */
+      const element = document.getElementById("message-container");
+      element.scrollTop = element.scrollHeight;
+    },
+  },
+};
+
+</script>
+<style scoped>
+.message-container {
+  display: flex;
+  margin-top: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  height: fit-content;
+  max-height: 300px;
+  width: 480px;
+  overflow: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+}
+.message {
+  /* height: 60px; */
+  /* display: block; */
+  /* align-items: center; */
+  padding: 0.5rem;
+  /* padding-left: 8rem; */
+  /* gap: 1rem; */
+}
+.message:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.message:hover {
+  background-color: white;
+  color: gray;
+}
+input {
+  padding: 0.5rem;
+  border: none;
+  background-color: white;
+  /* color: gray; */
+  outline: none;
+}
+</style>

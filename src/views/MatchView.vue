@@ -1,18 +1,23 @@
 <template>
-  <div class="match-view" @click="handleClick">
-    <UserProfile :user="user" />
+  <div class="match-view">
+    <UserProfile :user="user" @click="handleClick"/>
+    <Chat :userIdx="userIdx"/>
   </div>
 </template>
 
 <script>
 import UserProfile from '@/components/UserProfile.vue';
+import Chat from '@/components/Chat.vue';
 
 export default {
   name: 'MatchView',
-  components: { UserProfile },
+  components: { UserProfile, Chat },
   computed: {
     user() {
       return this.$store.state.matches[this.$route.params.idx];
+    },
+    userIdx() {
+      return this.$route.params.idx;
     },
   },
   methods: {
@@ -24,10 +29,14 @@ export default {
 </script>
 
 <style scoped>
+/deep/ .cat-viewer {
+  max-height: 500px;
+}
+
 .match-view {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  flex-direction: column;
 }
 </style>
