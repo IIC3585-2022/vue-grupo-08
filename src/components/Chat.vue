@@ -5,6 +5,8 @@
   </div>
 </template>
 <script>
+import { onUpdated, onMounted } from 'vue'
+
 export default {
   name: 'UserProfile',
   props: ['userIdx'],
@@ -12,6 +14,16 @@ export default {
   data() {
     return {
     };
+  },
+  setup() {
+    onUpdated(() => {
+      const element = document.getElementById("message-container");
+      element.scrollTop = element.scrollHeight;
+    });
+    onMounted(() => {
+      const element = document.getElementById("message-container");
+      element.scrollTop = element.scrollHeight;
+    });
   },
   computed: {
     messages() {
@@ -22,20 +34,8 @@ export default {
     handleSend(event) {
       this.$store.commit('message', { idx: this.userIdx, msg: event.target.value});
       event.target.value = "";
-      /* TODO: Fix scroll: */
     },
   },
-  watch: {
-    messages: {
-      handler() {
-        setTimeout(() => {
-          const element = document.getElementById("message-container");
-          element.scrollTop = element.scrollHeight;
-        }, 100)
-      },
-      deep: true
-    }
-  }
 };
 
 </script>
