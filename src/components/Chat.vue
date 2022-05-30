@@ -32,8 +32,10 @@ export default {
   },
   methods: {
     handleSend(event) {
-      this.$store.commit('message', { idx: this.userIdx, msg: event.target.value});
-      event.target.value = "";
+      if (event.target.value !== ""){
+        this.$store.commit('message', { idx: this.userIdx, msg: event.target.value});
+        event.target.value = "";
+      }
     },
   },
 };
@@ -46,19 +48,14 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
   height: fit-content;
-  max-height: 300px;
+  max-height: 500px;
   width: 480px;
   overflow: hidden;
   overflow-y: auto;
   flex-direction: column;
 }
 .message {
-  /* height: 60px; */
-  /* display: block; */
-  /* align-items: center; */
   padding: 0.5rem;
-  /* padding-left: 8rem; */
-  /* gap: 1rem; */
 }
 .message:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.05);
@@ -70,8 +67,7 @@ export default {
 input {
   padding: 0.5rem;
   border: none;
-  background-color: white;
-  /* color: gray; */
+  background-color: #ff7056;
   outline: none;
 }
 </style>
