@@ -8,7 +8,7 @@
 import { onUpdated, onMounted } from 'vue'
 
 export default {
-  name: 'UserProfile',
+  name: 'Chat',
   props: ['userIdx'],
   components: {},
   data() {
