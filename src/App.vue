@@ -24,7 +24,6 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: #f0f2f4;
-  box-sizing: border-width;
   overflow: auto;
 }
 .main-view {
