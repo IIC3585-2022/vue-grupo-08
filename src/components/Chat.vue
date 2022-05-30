@@ -1,6 +1,6 @@
 <template>
   <div class="message-container" id="message-container">
-    <div class="message" v-for="(msg, idx) in this.$store.state.matches[userIdx].chat" :key="idx">{{msg}}</div>
+    <div class="message" v-for="(msg, idx) in messages" :key="idx">{{msg}}</div>
     <input type="text" placeholder="Mensaje" @keydown.enter="handleSend">
   </div>
 </template>
@@ -13,15 +13,29 @@ export default {
     return {
     };
   },
+  computed: {
+    messages() {
+      return this.$store.state.matches[this.userIdx].chat
+    }
+  },
   methods: {
     handleSend(event) {
       this.$store.commit('message', { idx: this.userIdx, msg: event.target.value});
       event.target.value = "";
       /* TODO: Fix scroll: */
-      const element = document.getElementById("message-container");
-      element.scrollTop = element.scrollHeight;
     },
   },
+  watch: {
+    messages: {
+      handler() {
+        setTimeout(() => {
+          const element = document.getElementById("message-container");
+          element.scrollTop = element.scrollHeight;
+        }, 100)
+      },
+      deep: true
+    }
+  }
 };
 
 </script>
